@@ -147,9 +147,10 @@ referência:
 -   **Estilização:** CSS.
 -   **Mapa interativo:** biblioteca JavaScript de mapas e dados
     geográficos de países, a definir durante o desenvolvimento.
--   **Inteligência Artificial, notícias e dados ambientais:** integrações
-    com APIs e fontes confiáveis, a definir conforme os requisitos,
-    disponibilidade e licenças.
+-   **Inteligência Artificial:** API Gemini com o SDK oficial
+    `google-genai`; o modelo padrão é `gemini-4-hydrogen`.
+-   **Notícias e dados ambientais:** integrações com fontes confiáveis
+    ainda serão definidas conforme os requisitos, disponibilidade e licenças.
 -   **Tradução e recursos de voz:** tecnologias a definir durante a
     implementação.
 
@@ -159,26 +160,39 @@ funcionalidades da plataforma ainda serão escolhidos. Não está prevista
 a utilização de Node.js, Express, Next.js ou Tailwind CSS como parte
 dessa stack.
 
-## 🧪 Protótipo inicial
+## 🧪 Versão atual
 
-A primeira versão executável já inclui a página inicial, busca pelo nome
-de um país, escolha aleatória de um país de uma lista de exemplos e uma
-página de resultado com as seções previstas para o panorama ambiental.
-O resultado informa explicitamente que ainda não há análise gerada.
+A aplicação inclui a página inicial, busca por país, escolha aleatória de
+uma lista de exemplos e geração de uma análise textual pelo Gemini. A
+chamada é feita pelo backend Flask; `GEMINI_API_KEY` deve ser configurada
+no ambiente do servidor, nunca no HTML ou no JavaScript.
 
-O mapa interativo, a integração com IA, as notícias, as fontes de dados,
-a tradução e os recursos de voz ainda não estão conectados. Os espaços
-correspondentes na interface são uma estrutura inicial para essas etapas.
+O Gemini não consulta a web nem fornece fontes verificadas nesta versão.
+As notícias, os dados ambientais independentes, o mapa, a tradução e os
+recursos de voz ainda não estão conectados. Confira as informações
+geradas antes de utilizá-las.
 
 ### Executar localmente
 
-É necessário ter Python instalado. Na pasta do projeto, instale o Flask e
-inicie a aplicação:
+É necessário ter Python instalado. Na pasta do projeto, instale as
+dependências:
 
 ```bash
-python -m pip install Flask
+python -m pip install -r requirements.txt
+```
+
+No PowerShell, configure a chave obtida no Google AI Studio e inicie a
+aplicação. O modelo abaixo é opcional; se omitido, usa
+`gemini-4-hydrogen`.
+
+```powershell
+$env:GEMINI_API_KEY = "SUA_CHAVE_DO_AI_STUDIO"
+$env:GEMINI_MODEL = "gemini-4-hydrogen"
 python main.py
 ```
+
+Não compartilhe nem faça commit da chave. A camada gratuita tem limites
+de uso, e a disponibilidade depende do projeto Google associado à chave.
 
 Depois, acesse `http://127.0.0.1:5000/` no navegador.
 
@@ -187,11 +201,14 @@ Depois, acesse `http://127.0.0.1:5000/` no navegador.
 ```text
 EcoClima/
 ├── main.py
+├── ai_service.py
+├── requirements.txt
 ├── templates/
 │   ├── base.html
 │   ├── index.html
 │   └── result.html
-└── static/css/style.css
+├── static/css/style.css
+└── tests/
 ```
 
 ## 🗺️ Fluxo simplificado
@@ -206,13 +223,13 @@ Seleciona um país no mapa ou na busca
 Frontend envia o país selecionado
    |
    v
-Backend consulta fontes e solicita análise à IA
+Backend envia o país à API Gemini
    |
    v
 IA organiza problemas, causas e impactos
    |
    v
-Plataforma apresenta resultados e notícias
+Plataforma apresenta a análise com aviso para verificar as informações
    |
    +--> Tradução
    |
@@ -251,8 +268,8 @@ ser verificadas durante a implementação.
 -   [x] Implementar a busca de países.
 -   [x] Criar a opção de país aleatório com uma lista inicial de exemplos.
 -   [x] Criar rotas Flask para receber a seleção e apresentar o resultado.
--   [ ] Integrar a API de Inteligência Artificial.
--   [ ] Estruturar a apresentação de causas, problemas e impactos.
+-   [x] Integrar a API Gemini para gerar análises textuais.
+-   [x] Estruturar a apresentação de causas, problemas e impactos.
 -   [ ] Integrar fontes de dados e notícias ambientais.
 -   [ ] Desenvolver o mapa interativo.
 -   [ ] Implementar tradução de conteúdo.
