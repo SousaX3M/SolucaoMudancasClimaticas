@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}EcoClima — explore os desafios ambientais{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero__copy">
+    <p class="eyebrow">Uma perspectiva global, um país de cada vez</p>
+    <h1>Entenda os desafios ambientais do mundo.</h1>
+    <p class="hero__description">
+      Explore os problemas ambientais e os impactos das mudanças climáticas
+      enfrentados por diferentes países.
+    </p>
+
+    <form class="country-form" action="{{ url_for('analyze_country') }}" method="post">
+      <label for="country">Qual país você quer conhecer?</label>
+      <div class="country-form__controls">
+        <input
+          id="country"
+          name="country"
+          type="text"
+          maxlength="80"
+          placeholder="Ex.: Brasil, Japão, Quênia"
+          autocomplete="country-name"
+          required
+          {% if error %}aria-describedby="country-error" aria-invalid="true"{% endif %}
+        >
+        <button class="button button--primary" type="submit">Explorar país</button>
+      </div>
+      {% if error %}
+      <p class="form-error" id="country-error" role="alert">{{ error }}</p>
+      {% endif %}
+    </form>
+
+    <form action="{{ url_for('random_country') }}" method="post">
+      <button class="button button--text" type="submit">
+        Surpreenda-me com um país aleatório <span aria-hidden="true">→</span>
+      </button>
+    </form>
+  </div>
+
+  <aside class="map-preview" aria-label="Prévia do mapa interativo">
+    <div class="map-preview__globe" aria-hidden="true">
+      <span class="map-preview__orbit map-preview__orbit--one"></span>
+      <span class="map-preview__orbit map-preview__orbit--two"></span>
+      <span class="map-preview__land map-preview__land--one"></span>
+      <span class="map-preview__land map-preview__land--two"></span>
+      <span class="map-preview__land map-preview__land--three"></span>
+    </div>
+    <p class="map-preview__label">O planeta em foco</p>
+    <p class="map-preview__note">A seleção por mapa interativo será adicionada em uma próxima etapa.</p>
+  </aside>
+</section>
+
+<section class="how-it-works" aria-labelledby="how-title">
+  <div class="section-heading">
+    <p class="eyebrow">Do interesse à compreensão</p>
+    <h2 id="how-title">Explore com contexto</h2>
+  </div>
+  <div class="steps">
+    <article class="step-card">
+      <span class="step-card__number">01</span>
+      <h3>Escolha um país</h3>
+      <p>Pesquise pelo nome ou deixe o EcoClima escolher um país para você.</p>
+    </article>
+    <article class="step-card">
+      <span class="step-card__number">02</span>
+      <h3>Conheça os desafios</h3>
+      <p>Veja problemas ambientais, impactos climáticos e quem é afetado.</p>
+    </article>
+    <article class="step-card">
+      <span class="step-card__number">03</span>
+      <h3>Consulte as fontes</h3>
+      <p>Explore informações contextualizadas, com referências verificáveis.</p>
+    </article>
+  </div>
+</section>
+{% endblock %}

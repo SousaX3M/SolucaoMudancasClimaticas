@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}{{ country }} — EcoClima{% endblock %}
+
+{% block content %}
+<section class="results">
+  <a class="back-link" href="{{ url_for('index') }}">← Voltar à busca</a>
+  <p class="eyebrow">Panorama ambiental</p>
+  <h1 class="results__title">{{ country }}</h1>
+  <p class="results__intro">
+    Este espaço reunirá informações sobre problemas ambientais, mudanças
+    climáticas, impactos e iniciativas relacionadas a {{ country }}.
+  </p>
+
+  <div class="notice" role="status">
+    <span class="notice__icon" aria-hidden="true">i</span>
+    <p>
+      <strong>Protótipo em desenvolvimento.</strong>
+      A integração com inteligência artificial e fontes de dados ainda não
+      está configurada. Nenhuma análise ou notícia foi gerada para este país.
+    </p>
+  </div>
+
+  <div class="report-grid">
+    <article class="report-card">
+      <span class="report-card__index">01 / PANORAMA</span>
+      <h2>Problemas ambientais</h2>
+      <p>Esta seção apresentará os principais desafios ambientais identificados e suas fontes.</p>
+      <span class="status-tag">Aguardando integração de dados</span>
+    </article>
+    <article class="report-card">
+      <span class="report-card__index">02 / CLIMA</span>
+      <h2>Impactos climáticos</h2>
+      <p>Esta seção distinguirá os impactos das mudanças climáticas de outros problemas ambientais.</p>
+      <span class="status-tag">Aguardando integração de dados</span>
+    </article>
+    <article class="report-card">
+      <span class="report-card__index">03 / CONTEXTO</span>
+      <h2>Causas e áreas afetadas</h2>
+      <p>Esta seção contextualizará regiões, ecossistemas e populações afetadas.</p>
+      <span class="status-tag">Aguardando integração de dados</span>
+    </article>
+    <article class="report-card">
+      <span class="report-card__index">04 / ACOMPANHAMENTO</span>
+      <h2>Soluções e notícias</h2>
+      <p>Esta seção reunirá iniciativas e notícias com links para fontes confiáveis.</p>
+      <span class="status-tag">Aguardando integração de dados</span>
+    </article>
+  </div>
+
+  <form class="results__random" action="{{ url_for('random_country') }}" method="post">
+    <button class="button button--secondary" type="submit">Explorar outro país aleatório</button>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123f35">
+  <title>{% block title %}EcoClima — informação para cuidar do planeta{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="{{ url_for('index') }}" aria-label="EcoClima — página inicial">
+        <span class="brand__mark" aria-hidden="true">E</span>
+        <span>Eco<span class="brand__accent">Clima</span></span>
+      </a>
+      <span class="site-header__tagline">Informação para cuidar do planeta</span>
+    </div>
+  </header>
+
+  <main class="page-container" id="conteudo">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="page-container">
+      <p>EcoClima <span aria-hidden="true">·</span> Conhecer os desafios é um passo para transformar o futuro.</p>
+    </div>
+  </footer>
+</body>
+</html>

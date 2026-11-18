@@ -137,25 +137,62 @@ confiáveis.
 
 ## 🛠️ Tecnologias previstas
 
-As tecnologias ainda poderão ser definidas durante o desenvolvimento.
-Uma possibilidade de arquitetura é:
+A plataforma será desenvolvida com base nas tecnologias do projeto de
+referência:
 
--   **Frontend:** React ou Next.js.
--   **Estilização:** Tailwind CSS.
--   **Mapa interativo:** Leaflet ou MapLibre GL, com dados geográficos
-    de países.
--   **Backend:** Node.js com Express ou rotas de API do Next.js.
--   **Inteligência Artificial:** integração com uma API de modelo de
-    linguagem.
--   **Notícias e dados ambientais:** APIs de notícias e fontes
-    institucionais, conforme disponibilidade e licença.
--   **Acessibilidade por voz:** APIs de síntese e reconhecimento de fala
-    do navegador, quando compatíveis.
--   **Tradução:** serviço de tradução integrado ou modelo com suporte
-    multilíngue.
+-   **Linguagem:** Python.
+-   **Backend e rotas web:** Flask.
+-   **Templates:** Jinja, integrado ao Flask, para renderizar as páginas.
+-   **Estrutura da interface:** HTML.
+-   **Estilização:** CSS.
+-   **Mapa interativo:** biblioteca JavaScript de mapas e dados
+    geográficos de países, a definir durante o desenvolvimento.
+-   **Inteligência Artificial, notícias e dados ambientais:** integrações
+    com APIs e fontes confiáveis, a definir conforme os requisitos,
+    disponibilidade e licenças.
+-   **Tradução e recursos de voz:** tecnologias a definir durante a
+    implementação.
 
-Essa lista é uma sugestão inicial, não uma definição obrigatória da
-stack.
+Flask, Jinja, Python, HTML e CSS são a base adotada a partir do projeto
+anterior. A integração de mapa e os serviços externos necessários às
+funcionalidades da plataforma ainda serão escolhidos. Não está prevista
+a utilização de Node.js, Express, Next.js ou Tailwind CSS como parte
+dessa stack.
+
+## 🧪 Protótipo inicial
+
+A primeira versão executável já inclui a página inicial, busca pelo nome
+de um país, escolha aleatória de um país de uma lista de exemplos e uma
+página de resultado com as seções previstas para o panorama ambiental.
+O resultado informa explicitamente que ainda não há análise gerada.
+
+O mapa interativo, a integração com IA, as notícias, as fontes de dados,
+a tradução e os recursos de voz ainda não estão conectados. Os espaços
+correspondentes na interface são uma estrutura inicial para essas etapas.
+
+### Executar localmente
+
+É necessário ter Python instalado. Na pasta do projeto, instale o Flask e
+inicie a aplicação:
+
+```bash
+python -m pip install Flask
+python main.py
+```
+
+Depois, acesse `http://127.0.0.1:5000/` no navegador.
+
+### Estrutura atual
+
+```text
+EcoClima/
+├── main.py
+├── templates/
+│   ├── base.html
+│   ├── index.html
+│   └── result.html
+└── static/css/style.css
+```
 
 ## 🗺️ Fluxo simplificado
 
@@ -209,14 +246,15 @@ ser verificadas durante a implementação.
 
 ## 🚀 Etapas de desenvolvimento
 
--   [ ] Definir identidade visual e estrutura das páginas.
--   [ ] Desenvolver a interface inicial e o mapa interativo.
--   [ ] Implementar a seleção e a busca de países.
--   [ ] Criar a opção de país aleatório.
--   [ ] Desenvolver o backend para processar as solicitações.
+-   [x] Definir identidade visual e estrutura inicial das páginas.
+-   [x] Desenvolver a interface inicial.
+-   [x] Implementar a busca de países.
+-   [x] Criar a opção de país aleatório com uma lista inicial de exemplos.
+-   [x] Criar rotas Flask para receber a seleção e apresentar o resultado.
 -   [ ] Integrar a API de Inteligência Artificial.
 -   [ ] Estruturar a apresentação de causas, problemas e impactos.
 -   [ ] Integrar fontes de dados e notícias ambientais.
+-   [ ] Desenvolver o mapa interativo.
 -   [ ] Implementar tradução de conteúdo.
 -   [ ] Implementar leitura em voz alta e avaliar comandos por voz.
 -   [ ] Validar a qualidade das respostas e a confiabilidade das fontes.
